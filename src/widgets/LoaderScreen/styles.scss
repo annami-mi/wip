@@ -1,0 +1,16 @@
+.loader-screen{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  height: 100%;
+
+  &__title{
+    margin-top: 16px;
+  }
+  &__line{
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

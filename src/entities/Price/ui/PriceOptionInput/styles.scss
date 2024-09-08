@@ -1,0 +1,27 @@
+.price-option-input{
+  position: relative;
+
+  &__input{
+    -webkit-appearance: none;
+    height: 96px;
+    padding: 8px 16px;
+    border-radius: 12px;
+    background-color: $text-field;
+    font-size: 56px;
+    font-family: inherit;
+    line-height: 64px;
+    text-align: center;
+    border: 0;
+    font-weight: 900;
+    max-width: 152px;
+    outline: none;
+    display: block;
+  }
+
+  &__label{
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+  }
+}
+

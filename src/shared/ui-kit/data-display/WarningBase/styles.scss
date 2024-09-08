@@ -1,0 +1,11 @@
+.warning{
+  padding: 16px;
+  padding-top: 19px;
+  background-color: $warning-fill;
+  text-align: center;
+  border-radius: 16px;
+
+  &__icon{
+    margin-bottom: 16px;
+  }
+}

@@ -1,0 +1,25 @@
+.button-link{
+  display: flex;
+  gap: 8px;
+  justify-content: flex-start;
+  align-items: center;
+  cursor: pointer;
+  text-decoration: none;
+
+  &__text{
+    text-transform: uppercase;
+  }
+
+  &__prefix{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 21px;
+  }
+
+  &:active{
+    transition: 200ms;
+    opacity: .7;
+  }
+}
+

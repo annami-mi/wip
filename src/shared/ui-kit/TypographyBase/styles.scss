@@ -1,0 +1,54 @@
+.typography{
+
+  &--black{
+    font-weight: 900;
+  }
+
+  &--semibold{
+    font-weight: 600;
+  }
+
+  &--h1{
+    font-size: 31px;
+    line-height: 37px;
+  }
+
+  &--h2{
+    font-size: 22px;
+    line-height: 26px;
+  }
+
+  &--p{
+    font-size: 17px;
+    line-height: 22px;
+    letter-spacing: 0.2px;
+  }
+
+  &--small{
+    font-size: 15px;
+    line-height: 17.9px;
+    letter-spacing: 0.2px;
+  }
+
+  &--accent{
+    color: $accent-01;
+  }
+
+  &--accent{
+    color: $accent-01;
+  }
+  &--text-primary{
+    color: $text-01;
+  }
+  &--text-secondary{
+    color: $text-02;
+  }
+
+  &--non-color{
+    color: $text-on-color;
+  }
+
+  &--success{
+    color: $success;
+  }
+}

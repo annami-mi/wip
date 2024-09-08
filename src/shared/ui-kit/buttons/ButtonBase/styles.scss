@@ -1,0 +1,46 @@
+.button{
+  height: 52px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: max-content;
+  gap: 4px;
+  border: 0;
+  padding: 0 32px;
+  border-radius: 52px;
+  font-family: inherit;
+  text-transform: uppercase;
+  text-decoration: none;
+
+  &--small{
+    padding: 0 24px;
+  }
+
+  &__prefix{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 21px;
+    margin-left: -16px;
+  }
+
+  &--primary{
+    background-color: $accent-01;
+    box-shadow: 0  8px 32px 0 rgba(31, 142, 255, 0.3);
+  }
+
+  &--secondary{
+    background-color: $accent-03;
+  }
+
+  &:active{
+    transition: 100ms;
+    transform: scale(.98);
+    opacity: .9;
+    box-shadow: none;
+  }
+
+  &--small &__prefix{
+    margin-left: -8px;
+  }
+}

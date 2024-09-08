@@ -1,0 +1,21 @@
+.header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px $padding-right 24px $padding-left;
+
+  &__left{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &__price{
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+}

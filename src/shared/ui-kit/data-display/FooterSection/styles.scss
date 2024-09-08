@@ -1,0 +1,18 @@
+.footer-section{
+  padding: 24px $padding-right 24px $padding-left;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  position: fixed;
+  background-color: $text-on-color;
+  max-width: 360px;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%);
+  width: 100%;
+
+  > *:nth-child(2){
+    flex: 1;
+  }
+}
