@@ -1,23 +1,32 @@
 <script setup lang="ts">
 import {TypographyBase} from "@/shared/ui-kit/TypographyBase";
+import {computed} from "vue";
+import { vMaska } from 'maska'
 
 interface Props{
   label: string
+  mask?: any,
+  inputmode: 'numeric' | 'decimal',
+  maxlength?: string
+  isReadonly?: boolean
 }
 const props = defineProps<Props>()
-const value = defineModel<number>({default: 0})
+const value = defineModel<string>({default: ''})
+const inputMask = computed(() => props.mask)
+
 </script>
 
 <template>
   <div class="price-option-input">
     <input
-        readonly
+        :readonly="props.isReadonly"
         ref="inputEl"
         type='text'
         v-model="value"
-        inputmode="numeric"
         class="price-option-input__input"
-        maxlength="3"
+        :maxlength="props.maxlength"
+        :inputmode="props.inputmode"
+        v-maska:[inputMask]
     >
     <TypographyBase
         size="small"

@@ -33,6 +33,11 @@
     background-color: $accent-03;
   }
 
+  &--disabled{
+    opacity: 0.3;
+    pointer-events: none;
+  }
+
   &:active{
     transition: 100ms;
     transform: scale(.98);

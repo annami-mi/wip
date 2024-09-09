@@ -14,7 +14,6 @@ const priceStore = usePriceStore()
 const costPerUnit = computed(() => priceStore.costPerUnit)
 const unitName = computed(() => priceStore.unitNameCut)
 const ATMNumber = computed(() => priceStore.ATMNumber)
-const currencyName = computed(() => priceStore.currencyName)
 </script>
 
 <template>
@@ -23,7 +22,7 @@ const currencyName = computed(() => priceStore.currencyName)
       <DropIcon/>
       <div class="header__price">
         <TypographyBase tag="div" size="p" color="text-primary" weight="semibold">ATM {{ATMNumber}}</TypographyBase>
-        <TypographyBase tag="div" size="small" color="text-primary" weight="regular">1 {{unitName}} = {{costPerUnit}} {{currencyName}}</TypographyBase>
+        <TypographyBase tag="div" size="small" color="text-primary" weight="regular">1 {{unitName}} = {{costPerUnit}} F</TypographyBase>
       </div>
     </div>
     <div class="header__right">

@@ -1,13 +1,19 @@
 .price-option-input{
   position: relative;
+  //overflow-x: scroll; /* Включение горизонтальной прокрутки */
 
   &__input{
+    //white-space: nowrap;
+    //overflow: hidden;
+    //text-overflow: ellipsis;
+    //min-width: max-content;
+    white-space: nowrap;
     -webkit-appearance: none;
     height: 96px;
-    padding: 8px 16px;
+    padding: 8px 4px;
     border-radius: 12px;
     background-color: $text-field;
-    font-size: 56px;
+    font-size: 48px;
     font-family: inherit;
     line-height: 64px;
     text-align: center;

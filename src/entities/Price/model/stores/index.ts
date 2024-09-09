@@ -12,15 +12,24 @@ export const usePriceStore = defineStore('price', () => {
     const priceList = ref<Price[]>([])
 
     const unitValueList = [1.5, 5, 10, 20]
-    const getCostPerUnitValue = (unitValue: number) => {
-        return unitValue * costPerUnit.value
+    const getCostPerUnitValue = (unitValue: string) => {
+        if(unitValue.includes(',')){
+            unitValue.replace(',', '.')
+        }
+        return (Number(unitValue) * costPerUnit.value).toString()
+    }
+    const getUnitValuePerCost = (cost: string) => {
+        if(cost.includes(',')){
+            cost.replace(',', '.')
+        }
+        return (Number(cost) / costPerUnit.value).toString()
     }
 
     const getPriceList = () => {
         for(const item of unitValueList){
             priceList.value.push({
-                price: getCostPerUnitValue(item),
-                unitValue: item
+                price: getCostPerUnitValue(item.toString()),
+                unitValue: item.toString()
             })
         }
     }
@@ -34,6 +43,8 @@ export const usePriceStore = defineStore('price', () => {
         currencyNameCut,
         unitNameCut,
         ATMNumber,
-        priceList
+        priceList,
+        getUnitValuePerCost,
+        getCostPerUnitValue
     }
 })

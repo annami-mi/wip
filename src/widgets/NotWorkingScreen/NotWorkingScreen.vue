@@ -2,6 +2,11 @@
 import {FooterSection} from "@/shared/ui-kit/data-display/FooterSection";
 import {ButtonBase} from "@/shared/ui-kit/buttons/ButtonBase";
 import {HeaderSection} from "@/shared/ui-kit/data-display/HeaderSection";
+
+interface Props{
+  handlerAction: () => Promise<void>
+}
+const props = defineProps<Props>()
 </script>
 
 <template>
@@ -14,7 +19,7 @@ import {HeaderSection} from "@/shared/ui-kit/data-display/HeaderSection";
       <img src="@/shared/assets/image/image-3.png" alt="not-working" class="not-working-screen__body__image">
     </div>
     <FooterSection>
-      <ButtonBase text="Try again" type="primary"/>
+      <ButtonBase @click="props.handlerAction" text="Try again" type="primary"/>
     </FooterSection>
   </div>
 </template>

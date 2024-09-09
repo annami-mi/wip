@@ -12,9 +12,10 @@ import DropIcon from "@/shared/assets/image/drop-2.svg?component"
 // @ts-ignore
 import CashIcon from "@/shared/assets/image/cash.svg?component"
 import {Transaction} from "@/entities/Transaction/model/types.ts";
+import mask from "@/shared/mask";
+// import mask from "@/shared/mask";
 
 const priceStore = usePriceStore()
-const currencyName = computed(() => priceStore.currencyName)
 const unitName = computed(() => priceStore.unitName)
 
 const transaction = inject('transaction') as Transaction
@@ -45,7 +46,14 @@ const onContinue = () => {
               weight="semibold"
               class="price-form__subtitle"
           ><CashIcon/> You pay</TypographyBase>
-          <PriceOptionInput :label="currencyName" v-model="transaction.price"/>
+
+          <PriceOptionInput
+              label="F"
+              v-model="transaction.price"
+              inputmode="numeric"
+              maxlength="4"
+              :mask="mask.numeric(9999)"
+          />
         </div>
         <div>
           <TypographyBase
@@ -54,7 +62,13 @@ const onContinue = () => {
               weight="semibold"
               class="price-form__subtitle"
           ><DropIcon/> You get</TypographyBase>
-          <PriceOptionInput :label="unitName" v-model="transaction.unitValue"/>
+          <PriceOptionInput
+              :label="unitName"
+              v-model="transaction.unitValue"
+              inputmode="decimal"
+              is-readonly
+              :mask="mask.decimal(999.9)"
+          />
         </div>
       </div>
 
@@ -64,7 +78,12 @@ const onContinue = () => {
     </div>
 
     <FooterSection>
-      <ButtonBase @click="onContinue" text="Continue" type="primary"/>
+      <ButtonBase
+          @click="onContinue"
+          text="Continue"
+          type="primary"
+          :is-disabled="!Number(transaction.unitValue)"
+      />
     </FooterSection>
   </div>
 </template>

@@ -3,9 +3,11 @@
 import {TheHeader} from "@/widgets/TheHeader";
 
 interface Props{
-  displayHeader: boolean,
+  displayHeader?: boolean,
 }
-const props = defineProps<Props>()
+const props = withDefaults(defineProps<Props>(), {
+  displayHeader: true
+})
 </script>
 
 <template>

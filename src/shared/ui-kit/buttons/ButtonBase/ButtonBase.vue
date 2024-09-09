@@ -6,11 +6,13 @@ interface Props{
   type?: 'primary' | 'secondary'
   text: string
   size?: 'small' | 'normal'
+  isDisabled?: boolean
 }
 const props = withDefaults(defineProps<Props>(), {
   tag: 'button',
   type: 'primary',
   size: 'normal',
+  isDisabled: false
 })
 </script>
 
@@ -20,7 +22,8 @@ const props = withDefaults(defineProps<Props>(), {
       :class="['button', {
         'button--small': props.size === 'small',
         'button--primary': props.type === 'primary',
-        'button--secondary': props.type === 'secondary'
+        'button--secondary': props.type === 'secondary',
+        'button--disabled': props.isDisabled,
       }]"
       :style="$slots['prefix'] ? 'padding-right: 24px' : ''"
   >
