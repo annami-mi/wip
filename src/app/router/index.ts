@@ -3,7 +3,7 @@ import { routes } from './routes'
 
 export const router = createRouter({
     // history: createWebHistory('/wip'),
-    history: createWebHistory(),
+    history: createWebHistory('/wip'),
     routes,
 
     scrollBehavior(_, __, savedPosition) {
