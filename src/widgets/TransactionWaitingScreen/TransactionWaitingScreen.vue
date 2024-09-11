@@ -10,14 +10,14 @@ import TelIcon from "@/shared/assets/image/tel.svg?component"
 import ClockIcon from "@/shared/assets/image/clock.svg?component"
 import {HELP_TEL} from "@/shared/config";
 import {Transaction} from "@/entities/Transaction/model/types.ts";
-// import {useRoute} from "vue-router";
-// import {TransactionApi} from "@/entities/Transaction";
-// import {useSessionStore} from "@/entities/Session/model/stores";
-//
-// interface Props {
-//   handlerError: any
-// }
-// const props = defineProps<Props>()
+import {useRoute} from "vue-router";
+import {TransactionApi} from "@/entities/Transaction";
+import {useSessionStore} from "@/entities/Session/model/stores";
+
+interface Props {
+  handlerError: any
+}
+const props = defineProps<Props>()
 
 const transaction = inject('transaction') as Transaction
 
@@ -26,29 +26,30 @@ const state = reactive({
 })
 
 onMounted(() => {
+  postTransaction()
   timer(15)
 })
 
-// const route = useRoute();
-// const sessionStore = useSessionStore()
-// const postTransaction = async () => {
-//   const ref = route.query.ref as string
-//   try{
-//     const {data} = await TransactionApi.post({
-//       deviceId: ref,
-//       provider: transaction.payment.name,
-//       amount: Number(transaction.price),
-//       matchCode: sessionStore.token
-//     })
-//     if(data.success){
-//       window.open(data.data.redirectUrl)
-//     } else {
-//       props.handlerError()
-//     }
-//   } catch (e){
-//     props.handlerError()
-//   }
-// }
+const route = useRoute();
+const sessionStore = useSessionStore()
+const postTransaction = async () => {
+  const id = route.params.id as string
+  try{
+    const {data} = await TransactionApi.post({
+      deviceId: id,
+      provider: transaction.payment.id,
+      amount: Number(transaction.price),
+      matchCode: sessionStore.token
+    })
+    if(data.success){
+      window.location.href = data.data.redirectUrl;
+    } else {
+      props.handlerError()
+    }
+  } catch (e){
+    props.handlerError()
+  }
+}
 
 const timer = (seconds: number) => {
   let timeRemaining = seconds; // принимает количество секунд
@@ -85,7 +86,7 @@ const timer = (seconds: number) => {
         <ButtonBase tag="a" :href="`tel:${HELP_TEL}`" text="Support" type="secondary" size="small">
           <template #prefix><TelIcon/></template>
         </ButtonBase>
-        <ButtonBase text="Try Again" type="primary" size="small"/>
+        <ButtonBase @click="postTransaction" text="Try Again" type="primary" size="small"/>
       </template>
     </FooterSection>
   </div>

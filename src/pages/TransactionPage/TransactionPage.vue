@@ -1,13 +1,10 @@
 <script setup lang="ts">
 
 import {LayoutPrimary} from "@/shared/ui-kit/layouts/LayoutPrimary";
-import {computed, onMounted, provide, reactive, watch} from "vue";
+import {onBeforeUnmount, onMounted, provide, reactive, watch} from "vue";
 import {LoaderScreen} from "@/widgets/LoaderScreen";
-import {PriceForm} from "@/features/get-price/ui/PriceForm";
-import {PaymentTabList} from "@/features/select-payment/ui/PaymentTabList";
 import {TransactionConfirmScreen} from "@/widgets/TransactionConfirmScreen";
 import {usePaymentStore} from "@/entities/Payment";
-import {LayoutSecondary} from "@/shared/ui-kit/layouts/LayoutSecondary";
 import {Transaction} from "@/entities/Transaction/model/types.ts";
 import {SessionApi} from "@/entities/Session"
 import {useRoute} from "vue-router";
@@ -16,114 +13,115 @@ import {NotWorkingScreen} from "@/widgets/NotWorkingScreen";
 import {TransactionWaitingScreen} from "@/widgets/TransactionWaitingScreen";
 import {UnsuccessfulScreen} from "@/widgets/UnsuccessfulScreen";
 import {useDebounce} from "@/shared/libs/useDebounce.ts";
+import {checkDeviseResponse} from "@/entities/Session/api/repository.ts";
+import {PriceScreen} from "@/widgets/PriceScreen";
+import {PaymentScreen} from "@/widgets/PaymentScreen";
+import {scrollToTop} from "@/shared/libs/scroll.ts";
+
+const animationSlideNext = 'slide-left-fade'
+const animationSlidePrev = 'slide-right-fade'
 
 const state = reactive({
-  activeScreen: 0,
+  isLoading: true,
+  activeScreen: 1,
   animation: 'slide-scale-fade',
 })
 
-const useAnimationNext = () => {
-  state.animation = 'slide-left-fade'
-}
-
-const useAnimationPrev = () => {
-  state.animation = 'slide-right-fade'
-}
-
-const handlePrevScreen = (from:number) => {
-  state.activeScreen = from - 1
-  useAnimationPrev()
-}
-
-const handleNextScreen = (from:number) => {
-  state.activeScreen = from + 1
-  useAnimationNext()
-}
-
 const paymentStore = usePaymentStore()
-
 const transaction = reactive<Transaction>({
   price: '',
   unitValue: '',
   payment: paymentStore.paymentList[0]
 })
 
-watch(() => transaction.price, () => {
-  const update = useDebounce(() => {
-    transaction.unitValue = priceStore.getUnitValuePerCost(transaction.price)
-  }, 500)
-  update()
-})
+watch(() => transaction.price, () => debounceUpdateUnitValue())
+
+const updateUnitValue = () => transaction.unitValue = priceStore.getUnitValuePerCost(transaction.price)
+
+const debounceUpdateUnitValue = useDebounce(() => updateUnitValue(), 500)
 
 provide('transaction', transaction)
 
 const route = useRoute();
 const priceStore = usePriceStore()
+
+const setPrice = (data: checkDeviseResponse["data"]) => {
+  transaction.price = data.price.toString()
+  priceStore.costPerUnit  = data.price
+  priceStore.currencyName = data.currencyCode.toUpperCase()
+  priceStore.ATMNumber = data.number
+}
+
 const checkDevice = async () => {
-  const ref = route.query.ref as string
+  const id = route.params.id as string
   try{
-    state.activeScreen = 0
-    const {data} = await SessionApi.checkDevice({deviceId: ref})
+    state.isLoading = true
+    const {data} = await SessionApi.checkDevice({deviceId: id})
     if(data.success){
-      transaction.price = data.data.price.toString()
-      priceStore.costPerUnit  = data.data.price
-      priceStore.unitName = data.data.currencyCode
-      priceStore.ATMNumber = data.data.number
-      handleNextScreen(0)
+      setPrice(data.data)
+      updateUnitValue()
     } else {
-      // state.activeScreen = -1
-      state.activeScreen = 1
+      state.activeScreen = -1
     }
   } catch (e){
-    // state.activeScreen = -1
-    state.activeScreen = 1
+    state.activeScreen = -1
+  } finally {
+    state.isLoading = false
   }
 }
-onMounted(() => {
-  checkDevice()
-  transaction.price = '60'
+
+onMounted(async () => {
+  await checkDevice()
 })
 
-const layout = computed(() => {
-  switch (state.activeScreen){
-    case 0:
-    case -1:
-      return LayoutSecondary
-    default:
-      return LayoutPrimary
-  }
+onBeforeUnmount(() => {
+  state.activeScreen = 1
 })
+
+const toScreen = (to: number) => {
+  const from = state.activeScreen
+  state.animation = from < to || to === -1 || to ===-2 ? animationSlideNext : animationSlidePrev
+  state.activeScreen = to
+  scrollToTop()
+}
 </script>
 
 <template>
-    <component :is="layout">
+    <LayoutPrimary :display-header="!state.isLoading && state.activeScreen !== -1">
       <transition :name="state.animation" mode="out-in">
-        <LoaderScreen v-if="state.activeScreen === 0"/>
-        <PriceForm v-else-if="state.activeScreen === 1" :handler-next="handleNextScreen"/>
-        <PaymentTabList v-else-if="state.activeScreen === 2" :handler-next="handleNextScreen" :handler-prev="handlePrevScreen"/>
-        <TransactionConfirmScreen
-            v-else-if="state.activeScreen === 3"
-            :handler-next="handleNextScreen"
-            :handler-prev="handlePrevScreen"
-            :handler-change-payment="() => handlePrevScreen(3)"
-            :handler-change-price-option="() => handlePrevScreen(2)"
-        />
-        <TransactionWaitingScreen
-            v-else-if="state.activeScreen === 4"
-            :handler-error="handlePrevScreen(-1)"
-        />
+        <LoaderScreen v-if="state.isLoading"/>
         <NotWorkingScreen
             v-else-if="state.activeScreen === -1"
             :handler-action="checkDevice"
+        />
+        <PriceScreen
+            v-else-if="state.activeScreen === 1"
+            :handler-next="() => toScreen(2)"
+        />
+        <PaymentScreen
+            v-else-if="state.activeScreen === 2"
+            :handler-prev="() => toScreen(1)"
+            :handler-next="() => toScreen(3)"
+        />
+        <TransactionConfirmScreen
+            v-else-if="state.activeScreen === 3"
+            :handler-next="() => toScreen(4)"
+            :handler-prev="() => toScreen(2)"
+            :handler-change-payment="() => toScreen(2)"
+            :handler-change-price-option="() => toScreen(1)"
+        />
+        <TransactionWaitingScreen
+            v-else-if="state.activeScreen === 4"
+            :handler-error="() => toScreen(-2)"
         />
         <UnsuccessfulScreen
             v-else-if="state.activeScreen === -2"
             title="Oooops..."
             description="something went wrong"
-            :handler-action="handleNextScreen"
+            :handler-action="() => toScreen(4)"
         />
       </transition>
-    </component>
+    </LayoutPrimary>
 </template>
 
 <style scoped>

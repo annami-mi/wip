@@ -2,11 +2,13 @@
 
 import {LayoutPrimary} from "@/shared/ui-kit/layouts/LayoutPrimary";
 import {UnsuccessfulScreen} from "@/widgets/UnsuccessfulScreen";
-import {useRouter} from "vue-router";
+import {useRoute, useRouter} from "vue-router";
 
+const route = useRoute()
 const router = useRouter()
 const toTransactionPage = () => {
-  router.push({path: '/'})
+  const id = route.query.id as string
+  router.push({path: `/start/${id}`})
 }
 </script>
 

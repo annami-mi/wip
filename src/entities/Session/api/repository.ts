@@ -1,8 +1,8 @@
-import Repository from "@/shared/repositories/Repository.ts";
-import {CHECK_DEVICE_URL} from "@/shared/config";
+import {CHECK_DEVICE_URL} from "../../../shared/config";
+import Repository from "../../../shared/repositories/Repository.ts";
 
 type checkDeviseRequest = {deviceId: string}
-type checkDeviseResponse = {
+export type checkDeviseResponse = {
     success: true,
     data: {
         price: number,

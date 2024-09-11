@@ -9,7 +9,7 @@ import CashIcon from "@/shared/assets/image/cash.svg?component"
 import {Transaction} from "@/entities/Transaction/model/types.ts";
 
 const priceStore = usePriceStore()
-const currencyName = computed(() => priceStore.currencyName)
+// const currencyName = computed(() => priceStore.currencyName)
 const unitName = computed(() => priceStore.unitNameCut)
 
 const transaction = inject('transaction') as Transaction
@@ -18,7 +18,7 @@ const transaction = inject('transaction') as Transaction
 <template>
   <TypographyBase size="h2" color="text-primary" weight="black" class="order-price-options">
     <CashIcon style="margin-right: 12px"/>
-    {{transaction.price}} {{currencyName}}<span style="display: inline-block; margin: 0 16px 0 9px">for</span>
+    {{transaction.price}} F<span style="display: inline-block; margin: 0 16px 0 9px">for</span>
     <DropIcon style="margin-right: 8px"/>{{transaction.unitValue}}{{unitName}}
   </TypographyBase>
 </template>

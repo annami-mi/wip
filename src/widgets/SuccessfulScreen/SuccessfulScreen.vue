@@ -3,6 +3,11 @@ import {FooterSection} from "@/shared/ui-kit/data-display/FooterSection";
 import {ButtonBase} from "@/shared/ui-kit/buttons/ButtonBase";
 import {HeaderSection} from "@/shared/ui-kit/data-display/HeaderSection";
 import {TypographyBase} from "@/shared/ui-kit/TypographyBase";
+interface Props{
+  handlerAction: any
+}
+
+const props = defineProps<Props>()
 </script>
 
 <template>
@@ -14,7 +19,7 @@ import {TypographyBase} from "@/shared/ui-kit/TypographyBase";
       <img src="@/shared/assets/image/image-2.png" alt="successful" class="successful-page__screen__image">
     </div>
     <FooterSection>
-      <ButtonBase text="Add more funds" type="secondary"/>
+      <ButtonBase @click="props.handlerAction" text="Add more funds" type="secondary"/>
     </FooterSection>
   </div>
 </template>

@@ -8,5 +8,9 @@ export const routes: readonly RouteRecordRaw[] = [
     UnsuccessfulPage,
     TransactionPage,
     SuccessfulPage,
-    EnjoyPage
+    EnjoyPage,
+    {
+        path: '/',
+        redirect: '/start'
+    },
 ] as const

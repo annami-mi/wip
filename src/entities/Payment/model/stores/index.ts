@@ -5,12 +5,12 @@ import {Payment} from "../types.ts";
 export const usePaymentStore = defineStore('payment', () => {
     const paymentList = ref<Payment[]>([
         {
-            id: 1,
+            id: 'wave',
             name: 'Wave',
             image: "/wave.png"
         },
         {
-            id: 2,
+            id: 'orange',
             name: 'Orange money',
             image: "/orange-money.png"
         },

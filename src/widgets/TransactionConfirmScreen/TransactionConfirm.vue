@@ -10,8 +10,8 @@ import {TransactionPayment} from "@/entities/Transaction/ui/TransactionPayment";
 import {TransactionOptions} from "@/entities/Transaction/ui/TransactionOptions";
 
 interface Props {
-  handlerNext: (number:number) => void
-  handlerPrev: (number:number) => void
+  handlerNext: () => void
+  handlerPrev: () => void
   handlerChangePayment: () => void
   handlerChangePriceOption: () => void
 }
@@ -19,10 +19,10 @@ interface Props {
 const props = defineProps<Props>()
 
 const onPay = () => {
-  props.handlerNext(3)
+  props.handlerNext()
 }
 const onBack = () => {
-  props.handlerPrev(3)
+  props.handlerPrev()
 }
 </script>
 

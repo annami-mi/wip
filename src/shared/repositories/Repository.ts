@@ -1,7 +1,8 @@
-import {useFetch, UseFetchArguments} from "@/shared/libs/useFetch.ts";
+import {useFetch, UseFetchArguments} from "../libs/useFetch.ts";
 import {useMockRequest, UseMockUpArguments} from "@/shared/libs/useMockRequest.ts";
 
 export type RepositoryArguments<T, U> = Omit<UseFetchArguments<T, U>, 'METHOD'>;
+
 export default{
     post<Response, Request>(arg: RepositoryArguments<Response, Request>){
         return useFetch<Response, Request>({METHOD: 'POST', ...arg})

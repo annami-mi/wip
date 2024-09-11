@@ -14,7 +14,7 @@ const props = withDefaults(defineProps<Props>(), {
   <div class="layout-primary">
     <TheHeader v-if="props.displayHeader"/>
     <div v-else></div>
-    <div class="body">
+    <div class="layout-primary__body">
       <slot/>
     </div>
   </div>

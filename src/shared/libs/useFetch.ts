@@ -34,8 +34,8 @@ export const useFetch: UseFetch = async <T, U>({ METHOD, RESOURCE, ERRORS, BODY,
         method: METHOD,
         headers: {
             "Content-type": "application/json; charset=UTF-8",
-            'accept': 'application/json'
-        }
+            'accept': 'application/json',
+        },
     };
 
     if (METHOD === 'GET' && BODY){
@@ -53,6 +53,7 @@ export const useFetch: UseFetch = async <T, U>({ METHOD, RESOURCE, ERRORS, BODY,
 
     try{
         const response = await fetch(resource, request)
+        console.log(response)
         const status = response.status
         let data = await response.json()
         if(status >= 200 && status <= 300){

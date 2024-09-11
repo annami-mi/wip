@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import {computed, inject} from "vue";
-import {usePriceStore} from "@/entities/Price";
-import {HeaderSection} from "@/shared/ui-kit/data-display/HeaderSection";
 import {FooterSection} from "@/shared/ui-kit/data-display/FooterSection";
 import {ButtonBase} from "@/shared/ui-kit/buttons/ButtonBase";
 import {Payment, PaymentCard, usePaymentStore} from "@/entities/Payment";
@@ -14,9 +12,7 @@ interface Props {
 
 const props = defineProps<Props>()
 
-const priceStore = usePriceStore()
-const currencyName = computed(() => priceStore.currencyName)
-const unitName = computed(() => priceStore.unitName)
+
 const onContinue = () => {
   props.handlerNext(2)
 }
@@ -36,11 +32,6 @@ const selectPayment = (payment:Payment) => {
 
 <template>
   <div class="payment-tab-list">
-    <HeaderSection>
-      <template #title>Payment</template>
-      <template #description>You’ll pay {{transaction.price}} {{currencyName}} for {{ transaction.price }} {{unitName}}</template>
-    </HeaderSection>
-
     <div class="payment-tab-list__tabs">
       <PaymentCard
           v-for="payment in paymentList"
@@ -58,6 +49,6 @@ const selectPayment = (payment:Payment) => {
   </div>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss">
 @import "styles";
 </style>

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import {HeaderSection} from "@/shared/ui-kit/data-display/HeaderSection";
 import {FooterSection} from "@/shared/ui-kit/data-display/FooterSection";
 import {ButtonBase} from "@/shared/ui-kit/buttons/ButtonBase";
 import {PriceOptionTab} from "@/entities/Price/ui/PriceOptionTab";
@@ -13,7 +12,6 @@ import DropIcon from "@/shared/assets/image/drop-2.svg?component"
 import CashIcon from "@/shared/assets/image/cash.svg?component"
 import {Transaction} from "@/entities/Transaction/model/types.ts";
 import mask from "@/shared/mask";
-// import mask from "@/shared/mask";
 
 const priceStore = usePriceStore()
 const unitName = computed(() => priceStore.unitName)
@@ -32,12 +30,6 @@ const onContinue = () => {
 
 <template>
   <div class="price-form">
-    <div>
-      <HeaderSection>
-        <template #title>Amount</template>
-        <template #description>Enter or select desired water amount</template>
-      </HeaderSection>
-
       <div class="price-form__inputs">
         <div>
           <TypographyBase
@@ -85,7 +77,6 @@ const onContinue = () => {
           :is-disabled="!Number(transaction.unitValue)"
       />
     </FooterSection>
-  </div>
 </template>
 
 <style lang="scss">

@@ -5,6 +5,9 @@
   text-align: center;
   flex-direction: column;
   height: 100%;
+  position: fixed;
+  inset: 0;
+  z-index: 1;
 
   &__title{
     margin-top: 16px;
