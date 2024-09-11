@@ -1,3 +1,3 @@
 module.exports = {
-    publicPath: '/wip',
+    publicPath: '/wip', // убрать при публикации
 }

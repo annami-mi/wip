@@ -24,5 +24,5 @@ export default defineConfig({
   server: {
     port: 5174, // Вы также можете настроить порт, если нужно
   },
-  base: "/wip/",
+  base: "/wip/", // убрать при публикации
 });

@@ -5,7 +5,7 @@ import {useRoute, useRouter} from "vue-router";
 import {SessionApi} from "@/entities/Session";
 import {checkDeviseResponse} from "@/entities/Session/api/repository.ts";
 import {usePriceStore} from "@/entities/Price";
-import {computed, onMounted} from "vue";
+import {onMounted, reactive} from "vue";
 
 const route = useRoute()
 const router = useRouter()
@@ -14,16 +14,21 @@ const toTransactionPage = () => {
   router.push({path: `/start/${id}`})
 }
 
-onMounted(() => {
-  checkDevice()
+onMounted(async () => {
+  await checkDevice()
+})
+
+const state = reactive({
+  displayHeader: false
 })
 
 const checkDevice = async () => {
-  const id = route.params.id as string
+  const id = route.query.id as string
   try{
     const {data} = await SessionApi.checkDevice({deviceId: id})
     if(data.success){
       setPrice(data.data)
+      state.displayHeader = true
     }
   } catch (e){
     console.log(e)
@@ -37,11 +42,10 @@ const setPrice = (data: checkDeviseResponse["data"]) => {
   priceStore.ATMNumber = data.number
 }
 
-const price = computed(() => priceStore.costPerUnit)
 </script>
 
 <template>
-  <LayoutPrimary :display-header="!!price">
+  <LayoutPrimary :display-header="state.displayHeader">
     <SuccessfulScreen :handler-action="toTransactionPage"/>
   </LayoutPrimary>
 </template>
