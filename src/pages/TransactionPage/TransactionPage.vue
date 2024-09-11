@@ -46,7 +46,7 @@ const route = useRoute();
 const priceStore = usePriceStore()
 
 const setPrice = (data: checkDeviseResponse["data"]) => {
-  transaction.price = data.price.toString()
+  transaction.price = '300'
   priceStore.costPerUnit  = data.price
   priceStore.currencyName = data.currencyCode.toUpperCase()
   priceStore.ATMNumber = data.number

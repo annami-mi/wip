@@ -9,11 +9,11 @@ export const usePaymentStore = defineStore('payment', () => {
             name: 'Wave',
             image: "./wave.png"
         },
-        {
-            id: 'orange',
-            name: 'Orange money',
-            image: "./orange-money.png"
-        },
+        // {
+        //     id: 'orange',
+        //     name: 'Orange money',
+        //     image: "./orange-money.png"
+        // },
     ])
 
     return{
