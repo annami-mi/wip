@@ -7,7 +7,7 @@ export const usePaymentStore = defineStore('payment', () => {
         {
             id: 'wave',
             name: 'Wave',
-            image: "/wave.png"
+            image: "@/shared/assets/image/wave.png"
         },
         {
             id: 'orange',
