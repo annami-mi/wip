@@ -41,7 +41,7 @@ const price = computed(() => priceStore.costPerUnit)
 </script>
 
 <template>
-  <LayoutPrimary :display-header="price">
+  <LayoutPrimary :display-header="!!price">
     <SuccessfulScreen :handler-action="toTransactionPage"/>
   </LayoutPrimary>
 </template>
