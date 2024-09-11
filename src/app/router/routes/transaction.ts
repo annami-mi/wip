@@ -4,7 +4,7 @@ export const routeName = 'Transaction Page'
 
 export const route: RouteRecordRaw = {
     name: routeName,
-    path: '/start',
+    path: '/wip/start',
     component: () => import('@/pages/TransactionPage/TransactionPage.vue'),
     children:[
         {
