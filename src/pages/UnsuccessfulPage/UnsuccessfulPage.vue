@@ -11,7 +11,7 @@ import {checkDeviseResponse} from "@/entities/Session/api/repository.ts";
 const route = useRoute()
 const router = useRouter()
 const toTransactionPage = () => {
-  const id = route.query.id as string
+  const id = route.query.did as string
   router.push({path: `/start/${id}`})
 }
 
