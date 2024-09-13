@@ -23,7 +23,7 @@ const state = reactive({
 })
 
 const checkDevice = async () => {
-  const id = route.query.id as string
+  const id = route.query.did as string
   try{
     const {data} = await SessionApi.checkDevice({deviceId: id})
     if(data.success){
