@@ -4,6 +4,6 @@ export const routeName = 'Successful'
 
 export const route: RouteRecordRaw = {
     name: routeName,
-    path: '/successful',
+    path: '/success',
     component: () => import('@/pages/SuccessfulPage/SuccessfulPage.vue')
 }

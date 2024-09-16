@@ -4,6 +4,6 @@ export const routeName = 'Unsuccessful'
 
 export const route: RouteRecordRaw = {
     name: routeName,
-    path: '/unsuccessful',
+    path: '/error',
     component: () => import('@/pages/UnsuccessfulPage/UnsuccessfulPage.vue')
 }
