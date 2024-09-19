@@ -21,12 +21,12 @@ const ATMNumber = computed(() => priceStore.ATMNumber)
     <div class="header__left">
       <DropIcon/>
       <div class="header__price">
-        <TypographyBase tag="div" size="p" color="text-primary" weight="semibold">ATM {{ATMNumber}}</TypographyBase>
+        <TypographyBase tag="div" size="p" color="text-primary" weight="semibold">Machine {{ATMNumber}}</TypographyBase>
         <TypographyBase tag="div" size="small" color="text-primary" weight="regular">1 {{unitName}} = {{costPerUnit}} F</TypographyBase>
       </div>
     </div>
     <div class="header__right">
-      <ButtonLink tag="a" :href="`tel:${HELP_TEL}`" text="Help">
+      <ButtonLink tag="a" :href="`tel:${HELP_TEL}`" text="Aide">
         <template #prefix>
           <TelIcon/>
         </template>

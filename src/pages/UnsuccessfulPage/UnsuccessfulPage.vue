@@ -47,8 +47,8 @@ const setPrice = (data: checkDeviseResponse["data"]) => {
 <template>
   <LayoutPrimary :display-header="state.displayHeader">
     <UnsuccessfulScreen
-        title="Payment unsuccessful"
-        description="Try to pay another amount or use another payment provider."
+        title="Paiement échoué"
+        description="Essayez de payer un autre montant ou d'utiliser un autre moyen de paiement."
         :handler-action="toTransactionPage"
     />
   </LayoutPrimary>

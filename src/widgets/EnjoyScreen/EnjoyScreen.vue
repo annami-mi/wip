@@ -14,14 +14,14 @@ const props = defineProps<Props>()
 <template>
   <div>
     <HeaderSection>
-      <template #title>Enjoy your clear water</template>
-      <template #description>Don’t forget to remove the bottle</template>
+      <template #title>Profitez de votre eau potable</template>
+      <template #description>N'oubliez pas de retirer la bouteille</template>
     </HeaderSection>
     <div class="enjoy-screen__body">
       <img src="@/shared/assets/image/image-5.png" alt="successful" class="enjoy-screen__body__image">
     </div>
     <FooterSection>
-      <ButtonBase @click="props.handlerAction" text="Start again" type="primary"/>
+      <ButtonBase @click="props.handlerAction" text="Merci de recommencer" type="primary"/>
     </FooterSection>
   </div>
 </template>

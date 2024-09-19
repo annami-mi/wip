@@ -43,8 +43,8 @@ const selectPayment = (payment:Payment) => {
     </div>
 
     <FooterSection>
-      <ButtonBase @click="onBack" text="Back" type="secondary"/>
-      <ButtonBase @click="onContinue" text="Continue" type="primary"/>
+      <ButtonBase @click="onBack" text="Retour" type="secondary"/>
+      <ButtonBase @click="onContinue" text="Continuer" type="primary"/>
     </FooterSection>
   </div>
 </template>

@@ -37,7 +37,7 @@ const onContinue = () => {
               color="text-primary"
               weight="semibold"
               class="price-form__subtitle"
-          ><CashIcon/> You pay</TypographyBase>
+          ><CashIcon/> Vous payez</TypographyBase>
 
           <PriceOptionInput
               label="F"
@@ -53,7 +53,7 @@ const onContinue = () => {
               color="text-primary"
               weight="semibold"
               class="price-form__subtitle"
-          ><DropIcon/> You get</TypographyBase>
+          ><DropIcon/> Vous obtenez</TypographyBase>
           <PriceOptionInput
               :label="unitName"
               v-model="transaction.unitValue"
@@ -72,7 +72,7 @@ const onContinue = () => {
     <FooterSection>
       <ButtonBase
           @click="onContinue"
-          text="Continue"
+          text="Continuer"
           type="primary"
           :is-disabled="!Number(transaction.unitValue)"
       />

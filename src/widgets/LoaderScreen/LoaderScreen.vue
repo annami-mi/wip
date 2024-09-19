@@ -9,11 +9,11 @@ import {LoaderLine} from "@/shared/ui-kit/data-display/LoaderLine";
         <LoaderLine class="loader-screen__line"/>
         <TypographyBase
             :size="'h2'"
-            :weight="'black'"
+            weight="black"
             :tag="'div'"
             class="loader-screen__title"
             color="text-primary"
-        >Connecting to ATM</TypographyBase>
+        >Connexion à la machine</TypographyBase>
       </div>
     </div>
 </template>

@@ -116,8 +116,8 @@ const toScreen = (to: number) => {
         />
         <UnsuccessfulScreen
             v-else-if="state.activeScreen === -2"
-            title="Oooops..."
-            description="something went wrong"
+            title="Oups ..."
+            description="Il y a eu un problème"
             :handler-action="() => toScreen(4)"
         />
       </transition>

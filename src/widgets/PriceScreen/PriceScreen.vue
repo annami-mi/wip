@@ -11,8 +11,8 @@ const props = defineProps<Props>()
 <template>
   <div class="price-screen">
     <HeaderSection>
-      <template #title>Amount</template>
-      <template #description>Enter or select desired water amount</template>
+      <template #title>Montant</template>
+      <template #description>Insérer ou sélectionner la quantité d'eau souhaitée</template>
     </HeaderSection>
     <PriceForm :handler-next="props.handlerNext"/>
   </div>

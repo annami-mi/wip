@@ -13,13 +13,13 @@ const props = defineProps<Props>()
 <template>
   <div>
     <HeaderSection>
-      <template #title>Press <TypographyBase tag="span" size="h1" color="success" weight="black">Green</TypographyBase> button on Kaynann ATM to start the filling</template>
+      <template #title>Appuyez sur le bouton <TypographyBase tag="span" size="h1" color="success" weight="black">vert</TypographyBase> de la machine Kaynann pour commencer le remplissage.</template>
     </HeaderSection>
     <div class="successful-screen__body">
       <img src="@/shared/assets/image/image-2.png" alt="successful" class="successful-page__screen__image">
     </div>
     <FooterSection>
-      <ButtonBase @click="props.handlerAction" text="Add more funds" type="secondary"/>
+      <ButtonBase @click="props.handlerAction" text="Ajouter plus d'argent" type="secondary"/>
     </FooterSection>
   </div>
 </template>

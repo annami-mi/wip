@@ -72,21 +72,21 @@ const timer = (seconds: number) => {
 <template>
   <div class="transaction-screen">
     <HeaderSection>
-      <template #title>Confirm payment in {{transaction.payment.name}} app</template>
-      <template #description>Waiting for respond from {{transaction.payment.name}}...</template>
+      <template #title>Confirmez le paiement dans {{transaction.payment.name}} l'application</template>
+      <template #description>En attente d'une réponse de {{transaction.payment.name}}...</template>
     </HeaderSection>
 
     <img class="transaction-screen__image" src="@/shared/assets/image/image-1.png" alt="Confirm payment">
 
     <FooterSection>
       <TypographyBase v-if="state.time" color="text-primary" size="p" weight="semibold" class="timer">
-        <ClockIcon/>Try again in {{state.time}}S
+        <ClockIcon/>Merci de réessayer dans {{state.time}}S
       </TypographyBase>
       <template v-else>
-        <ButtonBase tag="a" :href="`tel:${HELP_TEL}`" text="Support" type="secondary" size="small">
+        <ButtonBase tag="a" :href="`tel:${HELP_TEL}`" text="Aide" type="secondary" size="small">
           <template #prefix><TelIcon/></template>
         </ButtonBase>
-        <ButtonBase @click="postTransaction" text="Try Again" type="primary" size="small"/>
+        <ButtonBase @click="postTransaction" text="Merci de réessayer" type="primary" size="small"/>
       </template>
     </FooterSection>
   </div>

@@ -33,7 +33,7 @@ const onBack = () => {
       <template #slot>
         <WarningBase>
           <TypographyBase size="p" color="text-primary" weight="semibold">
-            As soon as you pay the fund will be sent to the device. Make sure you’re there and no one is using the device.
+            Dès que vous aurez payé, le montant sera envoyé sur la machine. Assurez-vous d'être présent et que personne d'autre n'utilise la machine.
           </TypographyBase>
         </WarningBase>
       </template>
@@ -42,23 +42,23 @@ const onBack = () => {
     <div class="order-screen__body">
       <div class="order-screen__body__section">
         <div class="order-screen__subtitle">
-          <TypographyBase size="p" color="text-primary" weight="semibold">You pay</TypographyBase>
-          <ButtonLink @click="props.handlerChangePriceOption" text="Change"/>
+          <TypographyBase size="p" color="text-primary" weight="semibold">Vous payez</TypographyBase>
+          <ButtonLink @click="props.handlerChangePriceOption" text="Modifier"/>
         </div>
         <TransactionOptions/>
       </div>
       <div class="order-screen__body__section">
         <div class="order-screen__subtitle">
-          <TypographyBase size="p" color="text-primary" weight="semibold">Payment method</TypographyBase>
-          <ButtonLink @click="props.handlerChangePayment" text="Change"/>
+          <TypographyBase size="p" color="text-primary" weight="semibold">Mode de paiement</TypographyBase>
+          <ButtonLink @click="props.handlerChangePayment" text="Modifier"/>
         </div>
         <TransactionPayment/>
       </div>
     </div>
 
     <FooterSection>
-      <ButtonBase @click="onBack" text="Back" type="secondary"/>
-      <ButtonBase @click="onPay" text="Pay" type="primary"/>
+      <ButtonBase @click="onBack" text="Retour" type="secondary"/>
+      <ButtonBase @click="onPay" text="Payez" type="primary"/>
     </FooterSection>
   </div>
 </template>

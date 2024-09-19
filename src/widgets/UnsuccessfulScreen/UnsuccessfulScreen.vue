@@ -23,7 +23,7 @@ const props = defineProps<Props>()
     <img src="@/shared/assets/image/image-4.png" alt="unsuccessful" class="unsuccessful-screen__body__image">
   </div>
   <FooterSection>
-    <ButtonBase @click="props.handlerAction(2)" text="Try again" type="primary"/>
+    <ButtonBase @click="props.handlerAction(2)" text="Merci de réessayer" type="primary"/>
   </FooterSection>
 </div>
 </template>

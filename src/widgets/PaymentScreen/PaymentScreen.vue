@@ -22,8 +22,8 @@ const props = defineProps<Props>()
 <template>
   <div class="payment-screen">
     <HeaderSection>
-      <template #title>Payment</template>
-      <template #description>You’ll pay {{transaction.price}} {{currencyName}} for {{ transaction.unitValue }} {{unitName}}</template>
+      <template #title>Paiement</template>
+      <template #description>Vous paierez {{transaction.price}} {{currencyName}} pour {{ transaction.unitValue }} {{unitName}}</template>
     </HeaderSection>
     <PaymentTabList :handler-next="props.handlerNext" :handler-prev="props.handlerPrev"/>
   </div>
